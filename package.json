@@ -1,0 +1,23 @@
+{
+  "name": "socialnetwork",
+  "version": "1.0.0",
+  "description": "Practice Project to help me learn mean stack",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "mean",
+    "social",
+    "media"
+  ],
+  "author": "Amanda McClintock",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
