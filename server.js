@@ -4,13 +4,8 @@ var bodyParser = require('body-parser')
 var app = express()
 app.use(bodyParser.json())
 
-app.get('/api/posts', function(req, res) {
-    res.json([
-        {
-            username :  'Amanda',
-            body : 'I\'m tryin\''
-        }
-    ])
+app.get('/', function(req, res) {
+    res.sendfile('layouts/posts.html')
 })
 
 app.listen(3000, function() {
