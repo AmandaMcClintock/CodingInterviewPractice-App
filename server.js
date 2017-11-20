@@ -26,6 +26,13 @@ app.post('/api/posts', function(req, res, next) {
     })
 })
 
+// app.post('/api/posts', function(req, res) {
+//     console.log('post received!')
+//     console.log('req.body.username')
+//     console.log('req.body.body')
+//     res.sendStatus(201);
+// })
+
 /*
  * To test use curl -v -H "Content-Type: application/json" -XPOST --data
  * Alternatively, test in brower with http://localhost:3000/api/posts
