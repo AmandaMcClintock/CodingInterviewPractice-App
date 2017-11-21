@@ -16,7 +16,7 @@ app.get('/api/posts', function(req, res, next) {
 app.get('/api/posts', function(req, res) {
     res.json([
         {
-            username: 'Amanda McCliintock',
+            username: 'Amanda McClintock',
             body: 'Anything really. Just work.'
         }
     ])
@@ -33,7 +33,7 @@ app.post('/api/posts', function(req, res, next) {
     // })
     // post.save(function(err, post) {
     //     if(err) { return next(err) }
-         res.send(201)//.json(post)
+         res.sendStatus(201)//.json(post)
     // })
 })
 
