@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='app'>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-app='app'>
     <div ng-controller='PostsCtrl' class='container'>
       <h1>Recent Posts</h1>
       <form role='form'>
@@ -29,10 +27,17 @@
     <script>
       var app = angular.module('app', [])
       app.controller('PostsCtrl', function ($scope, $http) {
-        $http.get('http://localhost:3000/api/posts')
-        .success(function(posts) {
-          $scope.posts = posts
-        })
+        // $http.get('http://localhost:3000/api/posts')
+        // .success(function(posts) {
+        //   $scope.posts = posts
+        // })
+        if($scope.postBody) {
+          $scope.posts.unshift({
+            username: 'Amanda McClintock',
+            body: $scope.postBody
+          })
+          $scope.postBody = null
+        }
       })
     </script>
   </body>
