@@ -1,32 +1,47 @@
-var express = require('express')
-var bodyParser = require('body-parser')
+var express     = require('express')
+var bodyParser  = require('body-parser')
+var Post        = require('./models/post')
 
 var app = express()
 app.use(bodyParser.json())
 
-app.get('/', function(req, res) {
-    res.sendfile('layouts/posts.html')
+/*
+app.get('/api/posts', function(req, res, next) {
+    Post.find(function(err, posts) {
+        if(err) { return next(err) }
+        res.json(posts)
+    })
 })
-
-app.listen(3000, function() {
-        console.log('Server listening on', 3000)
+*/
+app.get('/api/posts', function(req, res) {
+    res.json([
+        {
+            username: 'Amanda McClintock',
+            body: 'Anything really. Just work.'
+        }
+    ])
 })
 
 //Using Mongoose models with the post endpoint
-var Post = require('./models/post')
 app.post('/api/posts', function(req, res, next) {
+    console.log('post received')
+    console.log(req.body.username)
+    console.log(req.body.body)
     var post = new Post({
-        username: req.body.username,
-        body: req.body.body
-    })
+         username: req.body.username,
+         body: req.body.body
+     })
+     post.save(function(err, post) {
+         if(err) { return next(err) }
+         res.sendStatus(201).json(post)
+     })
+})
 
-    post.save(function(err, post) {
-        if(err) { return next(err) }
-        res.json(201, post)
-    })
+app.listen(3000, function() {
+    console.log('Server listening on', 3000)
 })
 
 /*
- * To test use curl -v -H "Content-Type: application/json" -XPOST --data
+ * To test use curl -v -H "Content-Type: application/json" -XPOST --data "{\"username\": \"Amanda\", \"body\":\"Something Clever\"}" localhost:3000/api/posts
  * Alternatively, test in brower with http://localhost:3000/api/posts
  */
