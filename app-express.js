@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 
 app.get('/', function(req, res) {
+    console.log('express is in use')
     res.statusCode(200).send('express')
 })
 
