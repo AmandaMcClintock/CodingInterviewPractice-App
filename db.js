@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/social', function() {
+mongoose.Promise = require('bluebird');
+mongoose.connect('mongodb://localhost/SocialNetwork', function() {
     console.log('mongodb connected')
 })
 
