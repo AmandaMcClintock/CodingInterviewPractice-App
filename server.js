@@ -1,36 +1,11 @@
 var express     = require('express')
 var bodyParser  = require('body-parser')
-var Post        = require('./models/post')
 
 var app = express()
 app.use(bodyParser.json())
 
-app.get('/api/posts', function(req, res) {
-    console.log('The api is used')
-    Post.find(function(err, posts) {
-        if(err) { return next(err) }
-        res.json(posts)
-    })
-})
-//This ma
-app.get('/', function(req, res) {
-    res.sendfile('layouts/posts.html')
-    console.log('The posts html is in use.')
-})
-//Using Mongoose models with the post endpoint
-app.post('/api/posts', function(req, res, next) {
-    console.log('post received')
-    console.log(req.body.username)
-    console.log(req.body.body)
-    var post = new Post({
-         username: req.body.username,
-         body: req.body.body
-     })
-     post.save(function(err, post) {
-         if(err) { return next(err) }
-         res.sendStatus(201).json(post)
-     })
-})
+app.use('/api/posts', require('./controllers/api/posts'))
+app.use(require('./controllers/static'))
 
 app.listen(3000, function() {
     console.log('Server listening on', 3000)
