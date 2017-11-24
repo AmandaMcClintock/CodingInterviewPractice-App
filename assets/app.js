@@ -2,21 +2,29 @@ var app = angular.module('app', [])
 
 app.service('PostsSvc', function($http) {
     this.fetch = function() {
-        return
+        return $http.get('/api/posts')
     }
-
-app.controller('PostsCtrl', function ($scope, $http) {
+    this.create = function (post) {
+        return $http.post('/api/posts', post)
+    }
+})
+app.controller('PostsCtrl', function ($scope, PostsSvc) {
     $scope.addPost = function() {
-        $http.post('/api/posts', { 
-            username: 'Manda', 
-            body: $scope.postBody
-        }).success(function(posts) {
-            $scope.posts.unshift(post)
-            $scope.posts = null
-        })
+        if($scope.postBody){
+            PostsSvc.create({
+                username: 'Manda', 
+                body: $scope.postBody
+            }).success(function(posts) {
+                $scope.posts.unshift(post)
+                $scope.posts = null
+            })
+        }
     }
+    PostsSvc.fetch().success(function (posts) {
+        $scope.posts = posts
+    })
 })
 
-$http.get('/api/posts').success(function(posts) {
-    $scope.posts = posts
-})
+// $http.get('/api/posts').success(function(posts) {
+//     $scope.posts = posts
+// })
