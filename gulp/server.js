@@ -2,7 +2,7 @@ var gulp    = require('gulp')
 var nodemon = require('gulp-nodemon')
 
 //restarts server on gulp dev:server
-gulp.take('dev:server', function() {
+gulp.task('dev:server', function() {
   nodemon({
     script: 'server.js',
     ext: 'js'
