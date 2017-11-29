@@ -17,5 +17,3 @@ gulp.task('dev:server', function () {
     ignore: ['ng*', 'gulp*', 'assets*']
   })
 })
-
-gulp.task('dev', ['watch:css', 'watch:js', 'dev:server'])
